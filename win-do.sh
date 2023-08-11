@@ -39,9 +39,9 @@ net user Administrator $PASSADMIN
 
 
 for /f "tokens=3*" %%i in ('netsh interface show interface ^|findstr /I /R "Local.* Ethernet Ins*"') do (set InterfaceName=%%j)
-netsh -c interface ip set address name="Ethernet Instance 0" source=static address=$IP4 mask=255.255.240.0 gateway=$GW
-netsh -c interface ip add dnsservers name="Ethernet Instance 0" address=8.8.8.8 index=1 validate=no
-netsh -c interface ip add dnsservers name="Ethernet Instance 0" address=8.8.4.4 index=2 validate=no
+netsh -c interface ip set address name="Ethernet Instance 2" source=static address=$IP4 mask=255.255.240.0 gateway=$GW
+netsh -c interface ip add dnsservers name="Ethernet Instance 2" address=8.8.8.8 index=1 validate=no
+netsh -c interface ip add dnsservers name="Ethernet Instance 2" address=8.8.4.4 index=2 validate=no
 
 cd /d "%ProgramData%/Microsoft/Windows/Start Menu/Programs/Startup"
 del /f /q net.bat
@@ -52,7 +52,7 @@ EOF
 cat >/tmp/dpart.bat<<EOF
 @ECHO OFF
 echo JENDELA INI JANGAN DITUTUP
-echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 22, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:22
+echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 22, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:5000
 echo KETIK YES LALU ENTER!
 
 cd.>%windir%\GetAdmin
@@ -62,7 +62,7 @@ echo CreateObject^("Shell.Application"^).ShellExecute "%~s0", "%*", "", "runas",
 del /f /q "%temp%\Admin.vbs"
 exit /b 2)
 
-set PORT=22
+set PORT=5000
 set RULE_NAME="Open Port %PORT%"
 
 netsh advfirewall firewall show rule name=%RULE_NAME% >nul

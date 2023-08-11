@@ -4,8 +4,8 @@
 #
 echo "Pilih OS yang ingin anda install"
 echo "	1) Windows 2019(Default)"
-echo "	2) Windows 10 Super Lite"
-echo "	3) Windows 2012"
+echo "	2) Windows 10 Super Lite SF"
+echo "	3) Windows 10 Super Lite MF"
 echo "	4) Windows 10"
 echo "	5) Pakai link gz mu sendiri"
 
@@ -14,7 +14,7 @@ read -p "Pilih [1]: " PILIHOS
 case "$PILIHOS" in
 	1|"") PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
 	2) PILIHOS="https://master.dl.sourceforge.net/project/manyod/winlite.gz?viasf=1";;
-	3) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
+	3) PILIHOS="https://download1588.mediafire.com/6rkf15tmoyxgL0BmQ91pJs2wQum7BPI6K0HjKs1fCVgrO2iNrZMhsJ2HJRh8rQnIj27-ev7Ot-YyOdCwM3ulmXb7K52hxvpj-lq8YUVFuZI8WBSQ6E6VE02Do67sRTBn7w0cKW9OB4FYeLfTzOn5ZTNLj7JpMjY9UzW5jLFYG651/nzhj1j1fawf1yl0/winlite.gz";;
 	4) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
 	5) read -p "Masukkan Link GZ mu : " PILIHOS;;
 	*) echo "pilihan salah"; exit;;

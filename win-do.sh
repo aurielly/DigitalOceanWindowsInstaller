@@ -4,7 +4,7 @@
 #
 echo "Pilih OS yang ingin anda install"
 echo "	1) Windows 2019(Default)"
-echo "	2) Windows 2016"
+echo "	2) Windows 10 Super Lite"
 echo "	3) Windows 2012"
 echo "	4) Windows 10"
 echo "	5) Pakai link gz mu sendiri"
@@ -13,7 +13,7 @@ read -p "Pilih [1]: " PILIHOS
 
 case "$PILIHOS" in
 	1|"") PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
-	2) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
+	2) PILIHOS="https://master.dl.sourceforge.net/project/manyod/winlite.gz?viasf=1";;
 	3) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
 	4) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
 	5) read -p "Masukkan Link GZ mu : " PILIHOS;;
@@ -39,9 +39,9 @@ net user Administrator $PASSADMIN
 
 
 for /f "tokens=3*" %%i in ('netsh interface show interface ^|findstr /I /R "Local.* Ethernet Ins*"') do (set InterfaceName=%%j)
-netsh -c interface ip set address name="Ethernet Instance 0 2" source=static address=$IP4 mask=255.255.240.0 gateway=$GW
-netsh -c interface ip add dnsservers name="Ethernet Instance 0 2" address=8.8.8.8 index=1 validate=no
-netsh -c interface ip add dnsservers name="Ethernet Instance 0 2" address=8.8.4.4 index=2 validate=no
+netsh -c interface ip set address name="Ethernet" source=static address=$IP4 mask=255.255.240.0 gateway=$GW
+netsh -c interface ip add dnsservers name="Ethernet" address=8.8.8.8 index=1 validate=no
+netsh -c interface ip add dnsservers name="Ethernet" address=8.8.4.4 index=2 validate=no
 
 cd /d "%ProgramData%/Microsoft/Windows/Start Menu/Programs/Startup"
 del /f /q net.bat
@@ -52,7 +52,7 @@ EOF
 cat >/tmp/dpart.bat<<EOF
 @ECHO OFF
 echo JENDELA INI JANGAN DITUTUP
-echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 22, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:5000
+echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 22, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:22
 echo KETIK YES LALU ENTER!
 
 cd.>%windir%\GetAdmin
@@ -62,7 +62,7 @@ echo CreateObject^("Shell.Application"^).ShellExecute "%~s0", "%*", "", "runas",
 del /f /q "%temp%\Admin.vbs"
 exit /b 2)
 
-set PORT=5000
+set PORT=22
 set RULE_NAME="Open Port %PORT%"
 
 netsh advfirewall firewall show rule name=%RULE_NAME% >nul

@@ -6,17 +6,15 @@ echo "Pilih OS yang ingin anda install"
 echo "	1) Windows 2019(Default)"
 echo "	2) Windows 10 Super Lite SF"
 echo "	3) Windows 10 Super Lite DO-"
-echo "	4) Windows 10"
-echo "	5) Pakai link gz mu sendiri"
+echo "	4) Pakai link gz mu sendiri"
 
 read -p "Pilih [1]: " PILIHOS
 
 case "$PILIHOS" in
 	1|"") PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
-	2) PILIHOS="https://master.dl.sourceforge.net/project/manyod/winlite.gz?viasf=1";;
+	2) PILIHOS="https://master.dl.sourceforge.net/project/manyod/wedus10lite.gz?viasf=1";;
 	3) PILIHOS="http://139.59.241.167/win10lite.gz";;
-	4) PILIHOS="https://pub-96a3141a1f5b4b3ca15bbd7b03ad1f25.r2.dev/windows2019.gz";;
-	5) read -p "Masukkan Link GZ mu : " PILIHOS;;
+	4) read -p "Masukkan Link GZ mu : " PILIHOS;;
 	*) echo "pilihan salah"; exit;;
 esac
 
@@ -93,8 +91,6 @@ wget --no-check-certificate -O- $PILIHOS | gunzip | dd of=/dev/vda bs=3M status=
 
 mount.ntfs-3g /dev/vda2 /mnt
 cd "/mnt/ProgramData/Microsoft/Windows/Start Menu/Programs/"
-cd Start* || cd start*; \
-wget https://nixpoin.com/ChromeSetup.exe
 cp -f /tmp/net.bat net.bat
 cp -f /tmp/dpart.bat dpart.bat
 

@@ -50,7 +50,7 @@ EOF
 cat >/tmp/dpart.bat<<EOF
 @ECHO OFF
 echo JENDELA INI JANGAN DITUTUP
-echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 69, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:69
+echo SCRIPT INI AKAN MERUBAH PORT RDP MENJADI 22, SETELAH RESTART UNTUK MENYAMBUNG KE RDP GUNAKAN ALAMAT $IP4:22
 echo KETIK YES LALU ENTER!
 
 cd.>%windir%\GetAdmin
@@ -60,7 +60,7 @@ echo CreateObject^("Shell.Application"^).ShellExecute "%~s0", "%*", "", "runas",
 del /f /q "%temp%\Admin.vbs"
 exit /b 2)
 
-set PORT=69
+set PORT=22
 set RULE_NAME="Open Port %PORT%"
 
 netsh advfirewall firewall show rule name=%RULE_NAME% >nul
@@ -72,7 +72,7 @@ if not ERRORLEVEL 1 (
     netsh advfirewall firewall add rule name=%RULE_NAME% dir=in action=allow protocol=TCP localport=%PORT%
 )
 
-reg add "HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber /t REG_DWORD /d 69
+reg add "HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber /t REG_DWORD /d 22
 
 ECHO SELECT VOLUME=%%SystemDrive%% > "%SystemDrive%\diskpart.extend"
 ECHO EXTEND >> "%SystemDrive%\diskpart.extend"

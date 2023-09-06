@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Source code asli >> NIXPOIN.COM
+# 
 #
-echo "Pilih OS yang ingin anda install"
+echo "Pilih titit yang ingin di install"
 echo "	1) Windows 2019(Default)"
 echo "	2) Windows 10 Super Lite SF"
 echo "	3) Windows 10 Super Lite MF"
@@ -21,7 +21,7 @@ case "$PILIHOS" in
 esac
 
 echo "Password yang saya buat sudah masuk wordlist bruteforce, silahkan masukkan password yang lebih aman!"
-read -p "Masukkan password untuk akun Administrator (minimal 12 karakter): " PASSADMIN
+read -p "Masukkan titit untuk akun Administrator (minimal 12 karakter): " PASSADMIN
 
 IP4=$(curl -4 -s icanhazip.com)
 GW=$(ip route | awk '/default/ { print $3 }')
